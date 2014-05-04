@@ -1,6 +1,6 @@
 /* Utilities */
 /*** Element selection à la jQuery ***/
-var $_ = function(q) { return document.querySelector(q); }
+var $ = function(q) { return document.querySelector(q); }
 var $$ = function(q) { return document.querySelectorAll(q); }
 
 /*** Gestión de localStorage ***/
