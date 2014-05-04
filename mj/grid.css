@@ -1,0 +1,258 @@
+/* General */
+* {
+	font-family: Segoe UI, Helvetica, Tahoma, Arial, sans-serif;
+}
+body {
+	background: #444;
+	margin: 0;
+	padding: 0;
+	background-size: cover;
+	-ms-background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+}
+
+#wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+/* Date and time */
+.topbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	height: 1.5rem;
+	overflow: hidden;
+	background: rgba(0,0,0,0.5);
+	color: #ccc;
+}
+.topbar .date, .topbar .clock {
+	float: left;
+}
+.topbar .clock {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1em;
+	margin-right: 20px;
+}
+.topbar .message {
+    float: right;
+    color: #4060AF;
+    background: #F0F0F0;
+    padding: 0 2rem;
+}
+
+/* Grid */
+#scrollable {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+
+
+/*** Styled scrollbars ***/
+
+.iScrollHorizontalScrollbar {
+	position: absolute;
+	z-index: 9999;
+	height: 2px;
+	left: 2px;
+	right: 2px;
+	bottom: 2px;
+	overflow: hidden;
+}
+
+.iScrollHorizontalScrollbar.iScrollBothScrollbars {
+	right: 2px;
+}
+
+.iScrollVerticalScrollbar {
+	position: absolute;
+	z-index: 9999;
+	width: 2px;
+	bottom: 2px;
+	top: 2px;
+	right: 2px;
+	overflow: hidden;
+}
+
+.iScrollVerticalScrollbar.iScrollBothScrollbars {
+	bottom: 2px;
+}
+
+.iScrollIndicator {
+	position: absolute;
+	border: 2px solid #666;
+}
+
+.item {
+	width: 5rem;
+	height: 5rem;
+	padding: 0.7rem;
+	position: absolute;
+	text-decoration: none;
+	background: rgba(0,0,0,0.1);
+	transition: background .1s ease;
+}
+	.item:active { /* Holding down item */
+		background: rgba(255,255,255,0.1) !important;
+	}
+	.used.item {
+		background-position: 0.7rem 4.3rem;
+		background-size: 1.4rem 1.4rem;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		background-color: rgba(255,255,255,0.5);
+		color: #000;
+	}
+		.used:not(.group).item:hover {
+			background-color: rgba(255,255,255,0.35);
+		}
+	.used.group.item {
+		background: transparent;
+		font-size: 1.2rem;
+		font-family: Segoe UI Light, sans-serif;
+		overflow: visible;
+		color: white;
+	}
+
+	/*** Group borders ***/ 
+	.leftborder {
+		box-shadow: inset 10px 0 0 -5px #d0d0d0;
+	}
+		.leftborder.rightborder {
+			box-shadow: inset 10px 0 0 -5px #d0d0d0, inset -10px 0 0 -5px #d0d0d0;
+		}
+			.leftborder.rightborder.topborder {
+				box-shadow: inset 10px 0 0 -5px #d0d0d0, inset -10px 0 0 -5px #d0d0d0, inset 0 10px 0 -5px #d0d0d0;
+			}
+				.leftborder.rightborder.topborder.bottomborder {
+					box-shadow: inset 10px 0 0 -5px #d0d0d0, inset -10px 0 0 -5px #d0d0d0, inset 0 10px 0 -5px #d0d0d0, inset 0 -10px 0 -5px #d0d0d0;
+				}
+			.leftborder.rightborder.bottomborder {
+				box-shadow: inset 10px 0 0 -5px #d0d0d0, inset -10px 0 0 -5px #d0d0d0, inset 0 -10px 0 -5px #d0d0d0;
+			}
+		.leftborder.topborder {
+			box-shadow: inset 10px 0 0 -5px #d0d0d0, inset 0 10px 0 -5px #d0d0d0;
+		}
+			.leftborder.topborder.bottomborder {
+				box-shadow: inset 10px 0 0 -5px #d0d0d0, inset 0 10px 0 -5px #d0d0d0, inset 0 -10px 0 -5px #d0d0d0;
+			}
+		.leftborder.bottomborder {
+			box-shadow: inset 10px 0 0 -5px #d0d0d0, inset 0 -10px 0 -5px #d0d0d0;
+		}
+	.rightborder {
+		box-shadow: inset -10px 0 0 -5px #d0d0d0;
+	}
+		.rightborder.topborder {
+			box-shadow: inset -10px 0 0 -5px #d0d0d0, inset 0 10px 0 -5px #d0d0d0;
+		}
+			.rightborder.topborder.bottomborder {
+				box-shadow: inset 0 -10px 0 -5px #d0d0d0, inset -10px 0 0 -5px #d0d0d0, inset 0 10px 0 -5px #d0d0d0;
+			}
+		.rightborder.bottomborder {
+			box-shadow: inset -10px 0 0 -5px #d0d0d0, inset 0 -10px 0 -5px #d0d0d0;
+		}
+	.topborder {
+		box-shadow: inset 0 10px 0 -5px #d0d0d0;
+	}
+		.topborder.bottomborder {
+			box-shadow: inset 0 10px 0 -5px #d0d0d0, inset 0 -10px 0 -5px #d0d0d0;
+		}
+	.bottomborder {
+		box-shadow: inset 0 -10px 0 -5px #d0d0d0;
+	}
+
+/* Config dialogs */
+.config-back {
+	position: absolute;
+	left: 0; top: 0; bottom: 0; right: 0;
+	background: rgba(0,0,0,0.6);
+	display: none;
+	z-index: 2;
+}
+.dialog {
+	display: none;
+	z-index: 3;
+	height: 25rem;
+	position: absolute;
+	left: 0; right: 0;
+	margin-top: -13rem;
+	top: 50%;
+	padding: 1.4rem 10rem;
+	border: solid #666;
+	border-width: 1px 0;
+	font-size: 110%;
+	color: white;
+	background: rgba(0,0,0,0.82);
+}
+.dialog h3 {
+	font-size: 2rem;
+	font-weight: 300;
+	margin: 0;
+	padding: 0 0 1rem;
+}
+
+.dialog a.button {
+	float: right;
+	margin-top: 20px;
+	display: inline-block;
+	padding: 4px 10px;
+	text-decoration: none;
+	margin-left: 3px;
+	background: #111;
+	border: 2px solid white;
+	color: white;
+	cursor: pointer;
+}
+	a.button:hover {					
+		background: #555;
+	}
+	a.button:active {					
+		background: #fff;
+		color: #000;
+	}
+
+/*** Item dialog ***/
+.item-settings-link, .item-settings-title {
+	display: none;
+}
+#item-type-link:checked + * + * + * + * + * + .item-settings-link {
+	display: block;
+}
+#item-type-title:checked + * + * + * + * + .item-settings-title {
+	display: block;
+}
+#item-type-link + label {
+	background: #666 url("link.png") no-repeat center center / 40px 40px;
+}
+#item-type-title + label {
+	background: #666 url("title.png") no-repeat center center / 40px 40px;
+}
+
+/*** Wallpaper dialog ***/
+input.wp-select {
+	display: none;
+}
+input.wp-select + label {
+	width: 88px;
+	display: inline-block;
+	margin: 0 6px 6px 0;
+	padding: 66px 4px 6px 4px;
+	
+	background: #666 no-repeat top left;
+	line-height: 100%;
+	font-size: 14px;
+}
+input.wp-select:checked + label {
+	border: 2px solid #07a;
+	margin: -2px 4px 4px -2px;
+}
