@@ -254,7 +254,7 @@ var config = {
 				item.textContent = $("#item-title").value;
 				_(lskey, JSON.stringify(item));
 			} else if ($("#item-type-empty").checked) {
-				_("item"+i+'_'+j, "");
+				localStorage.removeItem("item"+i+'_'+j);
 			}
 		};
 
