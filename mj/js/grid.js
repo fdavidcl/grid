@@ -11,56 +11,66 @@ function _(key, value) {
 		else
 			localStorage.setItem(key, value);
 	}
-	
+
 	return localStorage[key] || false;
 }
 
 /* Date and time */
-var dateAndTime = function() {
+var dateAndTime = {
 	// display time
-	var displayTime = function() {
+	specialDate: function() {
 		var time = new Date();
-		var hour = time.getHours() < 10 ? '0'+time.getHours() : time.getHours();
-		var mins = time.getMinutes() < 10 ? '0'+time.getMinutes() : time.getMinutes();
-		$('.clock').textContent = hour+':'+mins;
+		return (time.getDate() == 29 && time.getMonth() == 4) ||
+			(time.getDay() == 0 && time.getDate() < 8 && time.getMonth() == 4);
+	},
+	load: function() {
+		var displayTime = function() {
+			var time = new Date();
+			var hour = time.getHours() < 10 ? '0'+time.getHours() : time.getHours();
+			var mins = time.getMinutes() < 10 ? '0'+time.getMinutes() : time.getMinutes();
+			$('.clock').textContent = hour+':'+mins;
+		};
+
+		displayTime();
+
+		var clockint = setInterval(displayTime, 1000);
+
+		// display date
+		var time = new Date();
+		var days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+		var day = days[time.getDay()]+' '+time.getDate();
+		var months = ["Enero", "Febrero", "Marzo", 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+		var month = months[time.getMonth()];
+		var year = time.getFullYear();
+		$('.date').textContent = day+' '+month+' '+year;
+
+		if (this.specialDate()) {
+			$(".message").textContent = "Felicidades!!! :)";
+		}
 	}
-
-	displayTime();
-	
-	var clockint = setInterval(displayTime, 1000);
-	
-	// display date
-	var time = new Date();
-	var days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-	var day = days[time.getDay()]+' '+time.getDate();
-	var months = ["Enero", "Febrero", "Marzo", 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-	var month = months[time.getMonth()];
-	var year = time.getFullYear();
-	$('.date').textContent = day+' '+month+' '+year;
-
-	if (time.getDate() == 29 && time.getMonth() == 4) // Cumpleaños!
-		$(".message").textContent = "Feliz cumpleaños!!! :)";
-	if (time.getDay() == 0 && time.getDate() < 8 && time.getMonth() == 4) // Dia de la madre!
-		$(".message").textContent = "Feliz dia de la Madre!!! :)";
 };
 
-window.addEventListener("load", dateAndTime);
+window.addEventListener("load", function(){dateAndTime.load()});
 
 /* Wallpaper management */
 var wallpaper = {
 	load: function() {
 		var curwp = _("wallpaper_url");
 		var custom_wp = true;
-		
+
 		if (!curwp) {
 			wallpaper.save("back/luminance.jpg"); // Default wallpaper
 		}
-		
-		$("body").style.backgroundImage = "url('" + _("wallpaper_url") + "')";
-		
+
+		if (!dateAndTime.specialDate())
+			$("body").style.backgroundImage = "url('" + _("wallpaper_url") + "')";
+		else
+			$("body").style.backgroundImage = "url('back/fireworks.jpg')";
+
+		// Lista de opciones de fondo
 		var list = ["astral", "dreamy", "elegance", "gaia", "luminance", "moonbeam", "pearl", "radient", "void"];
 		var setwphtml = "";
-		
+
 		for (var w in list) {
 			var name = list[w];
 			var wpurl = "back/" + name + ".jpg";
@@ -74,11 +84,11 @@ var wallpaper = {
 
 			setwphtml += ' value="back/' + name + '.jpg" id="select-' + name + '" /><label for="select-' + name + '" style="background-image:url(back/' + name + '_min.jpg)">' + name + '</label>';
 		}
-		
+
 		setwphtml += '<input type="radio" name="wp-select" class="wp-select" value="custom" id="select-custom" /><label for="select-custom">custom</label><input type="text" id="custom_wp_url" placeholder="http://example.com/wallpaper.jpg" />';
-		
+
 		$("form#wallpaper_settings").innerHTML = setwphtml;
-		
+
 		if (custom_wp) {
 			$("#select-custom").checked = "checked";
 			$("#custom_wp_url").value = _("wallpaper_url");
@@ -94,7 +104,7 @@ var wallpaper = {
 		} else {
 			_("wallpaper_url", newwp);
 		}
-		
+
 		$("body").style.backgroundImage = "url('" + _("wallpaper_url") + "')";
 	}
 };
@@ -128,7 +138,7 @@ var grid = {
 					e.setAttribute("data-col", j);
 					if (!_("item"+i+'_'+j)) {
 						e.className = 'empty item row'+i+' col'+j;
-						
+
 						if ($('.used.row'+(i-1)+'.col'+j)) {
 							e.className += ' topborder';
 						}
@@ -148,9 +158,9 @@ var grid = {
 							} catch(e) {}
 						if (a.style && a.style.backgroundImage)
 							e.style.backgroundImage = a.style.backgroundImage;
-						
+
 						//if (a.href) e.style.backgroundImage = 'url(http://grabicon.com/'+ a.href.split('://')[1].split('/')[0]+'.png)';
-						
+
 						if ($('.empty.row'+(i-1)+'.col'+j)) {
 							$('.empty.row'+(i-1)+'.col'+j).className += ' bottomborder';
 						}
@@ -172,8 +182,8 @@ var grid = {
 	position: function() {
 		var topmargin = 1.5;
 		var leftmargin = 0;
-		var horspacing = 1.5; // Margin = 0.1, padding = 2*0.7 
-		var verspacing = 1.5; 
+		var horspacing = 1.5; // Margin = 0.1, padding = 2*0.7
+		var verspacing = 1.5;
 		var allitems = $$('.item');
 		for (var i in allitems) {
 			var e = allitems[i];
