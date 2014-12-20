@@ -1,0 +1,36 @@
+* {
+
+}
+
+body {
+
+}
+
+body, div, aside {
+  margin: 0;
+}
+
+.grid-bar {
+  height: 3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+  .grid-bar-widget {
+    padding: 0.1rem 0.8%;
+    width: 31.4%;
+    display: inline-block;
+  }
+
+  .grid-bar-search {
+    padding: 0;
+  }
+
+  .grid-input-search {
+    height: 2.8rem;
+    font-size: 1.4rem;
+    padding: 0.1rem 0.8%;
+    width: 100%;
+  }
