@@ -31,6 +31,44 @@ body, div, aside {
   .grid-input-search {
     height: 2.8rem;
     font-size: 1.4rem;
-    padding: 0.1rem 0.8%;
-    width: 100%;
+    padding: 0.1rem 3%;
+    width: 94%;
   }
+
+  @media screen and (min-width: 600px) {
+    .grid-bar-widget {
+      width: 12%;
+    }
+    .grid-bar-search {
+      width: 71.2%;
+    }
+  }
+
+.grid-main {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  
+  background: #049490
+}
+  .grid-main-outer {
+    position: absolute;
+    overflow: hidden;
+  }
+    .grid-main-inner {
+      width: 2000px;
+      height: 1500px;
+      overflow: hidden;
+      border: 5px solid green;
+      padding-bottom: 100%;
+      background: #90d0f0;
+    }
+
+      .grid-main-inner div {
+      }

@@ -1,5 +1,10 @@
+body {
+	font-family: Lato, 'Lato', sans-serif;
+}
+
 .grid-bar {
   background: #777;
+  color: #e0e0e0;
 }
 
   .grid-input-search {
