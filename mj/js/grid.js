@@ -206,6 +206,14 @@ var grid = {
 	  config.showItemDialog(i, j);
 	});
       } catch(e) {}
+      try {
+	var hammertime = Hammer(e).on("tap", function(event) {
+	  event.preventDefault();
+	  var url = this.href;
+          window.location.href = url;
+	});
+      } catch(e) {}
+      
     }
 
     $("#grid-cols").onchange = function() {
