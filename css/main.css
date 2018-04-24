@@ -1,0 +1,109 @@
+:root {
+    font-family: Open Sans, Roboto, DejaVu Sans, Cantarell, Ubuntu, Segoe UI, Helvetica Neue, sans-serif;
+    background: #50a0a8;
+
+    --rowNum: 2;
+    --colNum: 2;
+    --gridHeight: 7rem;
+}
+
+body {
+    margin: 0;
+}
+
+#app {
+    white-space: nowrap;
+    padding-left: 25vw;
+}
+
+.top-form {
+    position: fixed;
+    height: 20vh;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    width: 100%;
+    height: 2rem;
+}
+
+.group {
+    display: inline-block;
+    margin: 20vh 4rem 0 0;
+}
+
+.group h1 {
+    font-weight: normal;
+    margin: 0 0 1rem;
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.group .links {
+    height: 50vh;
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: .2rem;
+    grid-row-gap: .2rem;
+    grid-template-columns: repeat(var(--colNum), auto);
+    grid-template-rows: repeat(auto-fit, var(--gridHeight));
+}
+
+.link {
+    display: flex;
+    width: var(--gridHeight);
+    height: var(--gridHeight);
+    //amargin: 0 .2rem .2rem 0;
+    //padding: .4rem;
+    border: .4rem solid #f0f0f0;
+    box-sizing: border-box;
+
+    text-overflow: ellipsis;
+    align-items: last baseline;
+    overflow: hidden;
+
+    font-size: .92rem;
+    background-color: #f0f0f0;
+    background-size: 40% 40%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #000;
+    mix-blend-mode: screen;
+    text-decoration: none;
+}
+
+.link img {
+    width: 1rem;
+    display: block;
+    position: relative;
+    bottom: 0;
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    
+    min-width: 25vw;
+}
+
+.modal input {
+    width: 100%;
+    min-width: 10rem;
+    height: 2rem;
+}

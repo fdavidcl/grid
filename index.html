@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grid</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    
+    <div id="app">
+      <form class="top-form" action="https://duckduckgo.com/">
+        <input class="search" type="search" name="q" placeholder="Search duckduckgo" autofocus>
+      </form>
+      
+      <div v-for="group in groups" class="group">
+        <h1>{{ group.title }}</h1>
+        <div class="links">
+          <a v-for="link in group.links" class="link" v-bind:href="link.href" v-bind:style="'background-image:url(' + link.href.split('://')[0] + '://' + link.href.split('://')[1].split('/')[0] + '/favicon.ico)'">
+            <!--img v-bind:src="link.href.split('://')[0] + '://' + link.href.split('://')[1].split('/')[0] + '/favicon.ico'"-->
+            {{ link.title }}
+          </a>
+          <a v-on:click="showModal = true" class="link add-link">+</a>
+        </div>
+      </div>
+      
+      <div class="group add-group"></div>
+
+      <div class="modal-container" v-if="showModal">
+        <div class="modal">
+          <p class="title">Add link</p>
+          <form>
+            <p><input placeholder="Title"></p>
+            <p><input placeholder="https://example.org"></p>
+            <p><input type="submit" value="Add!"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
