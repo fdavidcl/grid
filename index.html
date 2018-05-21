@@ -10,17 +10,14 @@
       <form class="top-form" action="https://duckduckgo.com/">
         <input class="search" type="search" name="q" placeholder="Search duckduckgo" autofocus>
       </form>
-      
-      <div v-for="group in groups" class="group">
-        <h1>{{ group.title }}</h1>
-        <div class="links">
-          <a v-for="link in group.links" class="link" v-bind:href="link.href" v-bind:style="'background-image:url(' + link.href.split('://')[0] + '://' + link.href.split('://')[1].split('/')[0] + '/favicon.ico)'">
-            <!--img v-bind:src="link.href.split('://')[0] + '://' + link.href.split('://')[1].split('/')[0] + '/favicon.ico'"-->
-            {{ link.title }}
-          </a>
-          <a v-on:click="showModal = true" class="link add-link">+</a>
-        </div>
-      </div>
+
+      <bookmark-group
+        v-for="group in groups"
+        :title="group.title"
+        :links="group.links"
+        :key="group.id"
+        @show-modal="showModal = true">
+      </bookmark-group>
       
       <div class="group add-group"></div>
 

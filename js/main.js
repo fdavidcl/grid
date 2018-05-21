@@ -1,3 +1,49 @@
+Vue.component('bookmark-item', {
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    href: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    icon: function() {
+      return this.href.split('://')[0] + '://' + this.href.split('://')[1].split('/')[0] + '/favicon.ico'
+    }
+  },
+  template: `<a class="link" :href="href" :style="'background-image:url(' + icon + ')'">{{ title }}</a>`
+})
+
+Vue.component('bookmark-group', {
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    links: {
+      type: Array,
+      required: true
+    } 
+  },
+  template: `
+      <div class="group">
+        <h1>{{ title }}</h1>
+        <div class="links">
+          <bookmark-item
+            v-for="link in links"
+            :title="link.title"
+            :href="link.href"
+            :key="link.id">
+          </bookmark-item>
+
+          <a v-on:click="$emit('show-modal', key)" class="link add-link">+</a>
+        </div>
+      </div>`
+})
+
 var app = new Vue({
   el: "#app",
   data: {

@@ -1,6 +1,12 @@
+---
+---
+
 :root {
     font-family: Open Sans, Roboto, DejaVu Sans, Cantarell, Ubuntu, Segoe UI, Helvetica Neue, sans-serif;
-    background: #50a0a8;
+    min-height: 100%;
+    min-width: 100%;
+    background: url({{ site.baseurl }}/assets/images/luminance.jpg) no-repeat #50a0a8;
+    background-size: cover;
 
     --rowNum: 2;
     --colNum: 2;
