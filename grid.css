@@ -1,0 +1,368 @@
+:root {
+	--item-shadow-color: rgb(151, 136, 165);
+	--shadow-left: -5px 0 var(--item-shadow-color);
+	--shadow-right: 5px 0 var(--item-shadow-color);
+	--shadow-top: 0 -5px  var(--item-shadow-color);
+	--shadow-topright: 5px -5px var(--item-shadow-color);
+	--shadow-topleft: -5px -5px var(--item-shadow-color);
+	--shadow-bottom: 0 5px  var(--item-shadow-color);
+	--shadow-bottomright: 5px 5px  var(--item-shadow-color);
+	--shadow-bottomleft: -5px 5px  var(--item-shadow-color);
+	--bgcolor: hsl(250deg 80% 10%);
+	--primary: #88c0d0;
+	--red: #bf616a;
+	--blue: #5e81ac;
+	--button-color: #f0f0f0;
+}
+
+/* General */
+:not(input) {
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	background: #444;
+	min-height: 100vh;
+	min-width: 100vw;
+	
+	/* background-size: cover;
+	-ms-background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover; */
+}
+
+#wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+/* Date and time */
+.topbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	height: 1.5rem;
+	overflow: hidden;
+	background: rgba(0,0,0,0.5);
+	color: #ccc;
+}
+.topbar .date, .topbar .clock {
+	float: left;
+}
+.topbar .clock {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1em;
+	margin-right: 20px;
+}
+.topbar .message {
+	float: right;
+	color: #4060AF;
+	background: #F0F0F0;
+	padding: 0 2rem;
+}
+.topbar a {
+	margin-left: 1rem;
+	padding: .1rem .4rem;
+	background-color: var(--blue);
+	color: var(--button-color);
+	text-decoration: none;
+	font-size: .9rem;
+}
+
+a.button {
+	filter: brightness(0.8);
+	transition: filter .1s ease;
+}
+a.button:hover {
+	filter: brightness(1);
+}
+
+/* Grid */
+#scrollable {
+	background: #000000;
+	background-image: 
+	radial-gradient(
+	circle at 60% 50%,
+	hsl(130deg 90% 50% / .15) 10%,
+	transparent 66%
+	),
+	radial-gradient(
+	circle at 40% 50%,
+	hsl(230deg 90% 50% / .4) 10%,
+	transparent 66%
+	),
+	radial-gradient(
+	circle at center bottom,
+	transparent 40%,
+	var(--bgcolor) 80%
+	),
+	radial-gradient(
+	circle at 10% 10%,
+	hsl(330deg 80% 60% / .3) 1%,
+	hsl(330deg 80% 50% / .1) 30%,
+	transparent 40%
+	),
+	radial-gradient(
+	circle at 90% 10%,
+	transparent 50%,
+	hsl(220deg 70% 60% / .3) 80%
+	),
+	radial-gradient(
+	circle at 10% 10%,
+	transparent 50%,
+	hsl(50deg 90% 60% / .3) 80%
+	),
+	radial-gradient(
+	circle at 50% 50%,
+	hsl(290deg 90% 50% / .05) 40%,
+	hsl(290deg 90% 50% / .20) 55%,
+	hsl(290deg 90% 50% / .20) 60%,
+	hsl(290deg 90% 50% / .22) 66%,
+	transparent 100%
+	);
+	min-width: 100vw;
+	min-height: 100vh;
+	box-shadow: 0 0 100px -10px #202020;
+}
+
+
+
+/*** Styled scrollbars ***/
+
+.iScrollHorizontalScrollbar {
+	position: absolute;
+	z-index: 9999;
+	height: 2px;
+	left: 2px;
+	right: 2px;
+	bottom: 2px;
+	overflow: hidden;
+}
+
+.iScrollHorizontalScrollbar.iScrollBothScrollbars {
+	right: 2px;
+}
+
+.iScrollVerticalScrollbar {
+	position: absolute;
+	z-index: 9999;
+	width: 2px;
+	bottom: 2px;
+	top: 2px;
+	right: 2px;
+	overflow: hidden;
+}
+
+.iScrollVerticalScrollbar.iScrollBothScrollbars {
+	bottom: 2px;
+}
+
+.iScrollIndicator {
+	position: absolute;
+	background-color: rgba(150, 150, 150, 0.4) !important;
+	border: 1px solid #505050 !important;
+	border-radius: 5px !important;
+}
+
+.item {
+	width: 5rem;
+	height: 5rem;
+	padding: 0.7rem;
+	position: absolute;
+	text-decoration: none;
+	background: rgba(0,0,0,0.1);
+	transition: background .1s ease;
+}
+.item:active { /* Holding down item */
+	background: rgba(255,255,255,0.1) !important;
+}
+.used.item {
+	background-position: 0.7rem 4.3rem;
+	background-size: 1.4rem 1.4rem;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background-color: rgba(255,255,255,0.8);
+	color: #000;
+}
+.used:not(.group).item:hover {
+	background-color: rgba(255,255,255,0.35);
+}
+.used.group.item {
+	background: transparent;
+	font-size: 1.2rem;
+	font-family: Segoe UI Light, sans-serif;
+	overflow: visible;
+	color: white;
+}
+
+/*** Group borders ***/ 
+.leftborder {
+	box-shadow: var(--shadow-left);
+}
+.leftborder.rightborder {
+	box-shadow: var(--shadow-left), var(--shadow-right);
+}
+.leftborder.rightborder.topborder {
+	box-shadow: var(--shadow-left), var(--shadow-right), var(--shadow-top), var(--shadow-topleft), var(--shadow-topright);
+}
+.leftborder.rightborder.topborder.bottomborder {
+	box-shadow: var(--shadow-left), var(--shadow-right), var(--shadow-top), var(--shadow-topleft), var(--shadow-topright), var(--shadow-bottom), var(--shadow-bottomleft), var(--shadow-bottomright);
+}
+.leftborder.rightborder.bottomborder {
+	box-shadow:  var(--shadow-left), var(--shadow-right), var(--shadow-bottom), var(--shadow-bottomleft), var(--shadow-bottomright);
+}
+.leftborder.topborder {
+	box-shadow: var(--shadow-left), var(--shadow-top), var(--shadow-topleft);
+}
+.leftborder.topborder.bottomborder {
+	box-shadow: var(--shadow-left), var(--shadow-bottom), var(--shadow-bottomleft), var(--shadow-top), var(--shadow-topleft);
+}
+.leftborder.bottomborder {
+	box-shadow: var(--shadow-left), var(--shadow-bottom), var(--shadow-bottomleft);
+}
+/* .rightborder {
+	box-shadow:  5px 0  var(--item-shadow-color);
+} */
+.rightborder {
+	box-shadow: var(--shadow-right);
+}
+.rightborder.topborder {
+	box-shadow: var(--shadow-right), var(--shadow-top), var(--shadow-topright);
+}
+.rightborder.topborder.bottomborder {
+	box-shadow: var(--shadow-right), var(--shadow-top), var(--shadow-topright), var(--shadow-bottom), var(--shadow-bottomright);
+}
+.rightborder.bottomborder {
+	box-shadow:  var(--shadow-right), var(--shadow-bottom), var(--shadow-bottomright);
+}
+.topborder {
+	box-shadow: var(--shadow-top);
+}
+.topborder.bottomborder {
+	box-shadow: var(--shadow-top), var(--shadow-bottom);
+}
+.bottomborder {
+	box-shadow: var(--shadow-bottom);
+}
+
+/* Config dialogs */
+.config-back {
+	position: absolute;
+	left: 0; top: 0; bottom: 0; right: 0;
+	background: rgba(40,40,40,0.6);
+	z-index: -1;
+	opacity: 0;
+	transition: opacity .2s ease-in-out;
+}
+.config-back.visible {
+	z-index: 2;
+	opacity: 1;
+}
+.dialog {
+	/* display: none; */
+	z-index: -1;
+	height: 15rem;
+	width: 20rem;
+	position: absolute;
+	left: 0; 
+	right: 0;
+	padding: 1.4rem 2rem;
+	border: 1px solid #404040;
+	box-shadow: 0 0 50px -10px rgba(0,0,0,0.5);
+	border-radius: 5px;
+	color: white;
+	background: rgba(40,40,40,0.92);
+	opacity: 0;
+	transition: opacity .2s ease-in-out;
+}
+.dialog.visible {
+	display: block;
+	z-index: 3;
+	opacity: 1;
+}
+.dialog h3 {
+	font-size: 2rem;
+	font-weight: 300;
+	margin: 0;
+	padding: 0 0 1rem;
+}
+
+.dialog a.button {
+	float: right;
+	margin-top: 20px;
+	display: inline-block;
+	padding: 4px 10px;
+	text-decoration: none;
+	margin-left: 3px;
+	background: rgb(96, 110, 121);
+	border: 1px solid #80a0d0;
+	color: white;
+	cursor: default;
+}
+.dialog a.button.primary-button {
+	background: var(--primary);
+}
+.dialog a.button.delete-button {
+	background: var(--red);
+}
+
+#item-type-empty:checked + label a.button.delete-button,
+#item-type-empty:checked + label a.button.delete-button:hover,
+#item-type-empty:checked + label a.button.delete-button:active {
+	background-color: #909090;
+}
+
+/*** Item dialog ***/
+.item-settings {
+	transition: height .2s ease;
+	height: 0;
+	overflow: hidden;
+}
+.dialog.visible input.wp-select:checked + label + .item-settings {
+	height: 6rem;
+}
+input.wp-select {
+	display: none;
+}
+input.wp-select + label.item-header {
+	/* width: 88px; */
+	display: block;
+	font-weight: bold;
+	margin: .2rem 0;
+	padding: .4rem 0;
+	
+	/* background: #666 no-repeat top left; */
+	line-height: 100%;
+	font-size: 14px;
+	color:rgb(184, 204, 212);
+	cursor: pointer;
+}
+input.wp-select:checked + label.item-header {
+	border-bottom: 3px solid rgb(210, 235, 247);
+	color: white;
+	cursor: default;
+	/* margin: -2px 4px 4px -2px; */
+}
+input.wp-select:not(:checked) + label.item-header:hover {
+	background-color: rgb(36, 73, 104);
+	/* margin: -2px 4px 4px -2px; */
+}
+.item-settings label {
+	display: inline-block;
+	min-width: 8rem;
+	font-size: .9rem;
+}

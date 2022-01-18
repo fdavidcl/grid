@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Nueva pestaña</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="grid.css" />
+		<script type="text/javascript" src="js/iscroll5.js"></script>
+		<!-- <script type="text/javascript" src="js/hammer.min.js"></script> -->
+		<script type="text/javascript" src="js/grid.js"></script>
+		<style type="text/css" id="custom_style"></style>
+	</head>
+	<body>
+		<div class="topbar">
+			<div class="clock"></div>
+			<div class="date"></div>
+			<div class="message"></div>
+			<input type="file" id="import-file" accept="application/json, text/json" hidden>
+			<label for="import-file"><a class="button">Importar</a></label>
+			<a id="export" class="button">Exportar</a>
+		</div>
+		<div id="wrapper">
+			<div id="scrollable">
+			</div>
+		</div>
+		<!-- Configuration dialogs -->
+		<div class="config-back"></div>
+		<div id="dialog-item" class="dialog">
+			<!-- <strong>Modificar ítem</strong> -->
+			<form id="item_settings" onsubmit="return config.closeDialogs();">
+				<input id="item-type-link" type="radio" class="wp-select" name="item-type" value="link" />
+				<label for="item-type-link" class="item-header">Enlace</label>
+				<div class="item-settings item-settings-link">
+					<label for="item-link-name">Nombre</label><input type="text" id="item-link-name" placeholder="Mi página web" /><br>
+					<label for="item-link-url">Dirección</label><input type="url" id="item-link-url" placeholder="www.example.org" /><br>
+					<!-- <label for="item-link-favicon">Icono (opcional)</label><input type="url" id="item-link-favicon" placeholder="example.org/favicon.ico" /><br> -->
+				</div>
+
+				<input id="item-type-title" type="radio" class="wp-select" name="item-type" value="title" />
+				<label for="item-type-title" class="item-header">Título</label>
+				<div class="item-settings item-settings-title">
+					<input type="text" id="item-title" placeholder="Título" />
+				</div>
+
+				<input type="submit" style="display:none">
+				<a class="button primary-button close-dialog">Guardar</a>
+				<input id="item-type-empty" type="radio" class="wp-select" name="item-type" value="empty" />
+				<label for="item-type-empty"><a class="button delete-button">Borrar ítem</a></label>
+			</form>
+		</div>
+	</body>
+</html>
