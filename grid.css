@@ -30,11 +30,6 @@ body {
 	background: #444;
 	min-height: 100vh;
 	min-width: 100vw;
-	
-	/* background-size: cover;
-	-ms-background-size: cover;
-	-moz-background-size: cover;
-	-webkit-background-size: cover; */
 }
 
 #wrapper {
@@ -48,7 +43,7 @@ body {
 
 /* Date and time */
 .topbar {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -56,10 +51,13 @@ body {
 	height: 1.5rem;
 	overflow: hidden;
 	background: rgba(0,0,0,0.5);
+	border-bottom: 1px solid rgba(80, 80, 80, 0.4);
 	color: #ccc;
+	display: flex;
+	justify-content: space-between;
 }
 .topbar .date, .topbar .clock {
-	float: left;
+	display: inline-block;
 }
 .topbar .clock {
 	font-size: 24px;
@@ -68,13 +66,12 @@ body {
 	margin-right: 20px;
 }
 .topbar .message {
-	float: right;
-	color: #4060AF;
-	background: #F0F0F0;
-	padding: 0 2rem;
+	color: var(--primary);
+	font-weight: bold;
 }
-.topbar a {
-	margin-left: 1rem;
+.topbar a.button {
+	display: inline-block;
+	margin: 1px;
 	padding: .1rem .4rem;
 	background-color: var(--blue);
 	color: var(--button-color);
@@ -199,12 +196,12 @@ a.button:hover {
 	color: #000;
 }
 .used:not(.group).item:hover {
-	background-color: rgba(255,255,255,0.35);
+	background-color: rgba(255,255,255,0.6);
 }
 .used.group.item {
 	background: transparent;
 	font-size: 1.2rem;
-	font-family: Segoe UI Light, sans-serif;
+	font-weight: 300;
 	overflow: visible;
 	color: white;
 }

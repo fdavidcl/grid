@@ -47,7 +47,8 @@ var _ = Memory();
 
 let importMemory = function(data) {
   localStorage.setItem("grid-data", data);
-  _ = Memory;
+  _ = Memory();
+  grid.load();
 }
 
 let importFromFile = function() {
