@@ -18,9 +18,14 @@
 				<div class="clock"></div>
 				<div class="date"></div>
 			</div>
-			<div class="message"></div>
-			<input type="file" id="import-file" accept="application/json, text/json" hidden>
+			<div class="search">
+				<form action="https://duckduckgo.com/">
+					<input type="search" autofocus placeholder="Buscar... (Ctrl+L para enfocar la barra de direcciones)" name="q">
+					<input type="submit" hidden>
+				</form>
+			</div>
 			<div class="settings">
+				<input type="file" id="import-file" accept="application/json, text/json" hidden>
 				<label for="import-file"><a class="button">Importar</a></label>
 				<a id="export" class="button">Exportar</a>
 			</div>

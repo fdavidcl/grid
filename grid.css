@@ -47,14 +47,29 @@ body {
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 1;
 	height: 1.5rem;
+	z-index: 1;
 	overflow: hidden;
 	background: rgba(0,0,0,0.5);
 	border-bottom: 1px solid rgba(80, 80, 80, 0.4);
 	color: #ccc;
 	display: flex;
+	flex-basis: 30%;
 	justify-content: space-between;
+	align-items: flex-end;
+	gap: 1rem;
+}
+.topbar .search {
+	flex-grow: 1;
+	margin
+}
+.topbar .search input[type="search"] {
+	min-width: 12rem;
+	width: 100%;
+	background-color: rgba(150, 150, 150, 0.4);
+	color: white;
+	border-radius: 3px;
+	padding: .1rem .4rem;
 }
 .topbar .date, .topbar .clock {
 	display: inline-block;
@@ -72,6 +87,7 @@ body {
 .topbar a.button {
 	display: inline-block;
 	margin: 1px;
+	border-radius: 3px;
 	padding: .1rem .4rem;
 	background-color: var(--blue);
 	color: var(--button-color);
@@ -80,7 +96,7 @@ body {
 }
 
 a.button {
-	filter: brightness(0.8);
+	filter: brightness(0.9);
 	transition: filter .1s ease;
 }
 a.button:hover {
@@ -89,7 +105,7 @@ a.button:hover {
 
 /* Grid */
 #scrollable {
-	background: #000000;
+	background: #444;
 	background-image: 
 	radial-gradient(
 	circle at 60% 50%,

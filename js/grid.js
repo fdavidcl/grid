@@ -282,6 +282,7 @@ var config = {
     $("#dialog-item").className = $("#dialog-item").className.replace("visible", "");
     $(".config-back").className = $(".config-back").className.replace("visible", "");
     grid.load(true);
+    $(".search input[type='search']").focus();
     return false;
   }
 }
