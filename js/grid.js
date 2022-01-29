@@ -73,12 +73,6 @@ window.addEventListener("load", function() {
 
 /* Date and time */
 var dateAndTime = (function() {
-  // display time
-  let specialDate = function() { // remove for generic version
-    var time = new Date();
-    return (time.getDate() == 29 && time.getMonth() == 4) ||
-    (time.getDay() == 0 && time.getDate() < 8 && time.getMonth() == 4);
-  }
   var displayTime = function() {
     var time = new Date();
     var hour = time.getHours() < 10 ? '0'+time.getHours() : time.getHours();
@@ -99,10 +93,6 @@ var dateAndTime = (function() {
     displayDate();
     
     var clockint = setInterval(displayTime, 1000);
-       
-    if (specialDate()) {
-      $(".message").textContent = "Felicidades!!! :)";
-    }
   }
 })();
 

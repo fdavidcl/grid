@@ -101,7 +101,7 @@ var dateAndTime = (function() {
     var clockint = setInterval(displayTime, 1000);
        
     if (specialDate()) {
-      $(".message").textContent = "Felicidades!!! :)";
+      $("#message").textContent = "Felicidades!!! :)";
     }
   }
 })();
