@@ -2,60 +2,62 @@
 
 <html>
 	<head>
-		<title>Nueva pestaña</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta charset="UTF-8" />
+		<title>Nueva pestaña</title>
 		<link rel="stylesheet" href="grid.css" />
-		<script type="text/javascript" src="js/iscroll.js"></script>
-		<script type="text/javascript" src="js/hammer.min.js"></script>
+		<script type="text/javascript" src="js/iscroll5.js"></script>
+		<!-- <script type="text/javascript" src="js/hammer.min.js"></script> -->
 		<script type="text/javascript" src="js/grid.js"></script>
 		<style type="text/css" id="custom_style"></style>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
 		<div class="topbar">
-			<div class="clock"></div>
-			<div class="date"></div>
-			<div class="message"></div>
+			<div class="time-and-date">
+				<div class="clock"></div>
+				<div class="date"></div>
+			</div>
+			<div class="search">
+				<form action="https://duckduckgo.com/">
+					<input type="search" autofocus placeholder="Buscar... (Ctrl+L para enfocar la barra de direcciones)" name="q">
+					<input type="submit" hidden>
+				</form>
+			</div>
+			<div class="settings">
+				<input type="file" id="import-file" accept="application/json, text/json" hidden>
+				<label for="import-file"><a class="button">Importar</a></label>
+				<a id="export" class="button">Exportar</a>
+			</div>
 		</div>
 		<div id="wrapper">
 			<div id="scrollable">
 			</div>
-			
 		</div>
 		<!-- Configuration dialogs -->
 		<div class="config-back"></div>
-		<div id="dialog-wallpaper" class="dialog">
-			<h3>Cambiar fondo</h3>
-			<form id="wallpaper_settings"></form>
-			<form id="grid_settings">
-				<p><strong>Tamaño de la rejilla</strong></p>
-				<label for="grid-cols">Columnas:</label> <input type="number" min=10 max=100 id="grid-cols" /><br />
-				<label for="grid-rows">Filas:</label> <input type="number" min=5 max=100 id="grid-rows" />
-			</form>
-			<a class="button close_dialog">Guardar</a>
-		</div>
 		<div id="dialog-item" class="dialog">
-			<h3>Modificar ítem</h3>
+			<!-- <strong>Modificar ítem</strong> -->
 			<form id="item_settings" onsubmit="return config.closeDialogs();">
 				<input id="item-type-link" type="radio" class="wp-select" name="item-type" value="link" />
-				<label for="item-type-link">Enlace</label>
-				<input id="item-type-title" type="radio" class="wp-select" name="item-type" value="title" />
-				<label for="item-type-title">Título</label>
-				<input id="item-type-empty" type="radio" class="wp-select" name="item-type" value="empty" />
-				<label for="item-type-empty">Vacío</label>
-
-				<div class="item-settings-link">
-					<input type="text" id="item-link-name" placeholder="Nombre" />
-					<input type="url" id="item-link-url" required placeholder="www.example.org" />
-					<p><strong>Avanzado</strong></p>
-					<input type="url" id="item-link-favicon" placeholder="example.org/favicon.ico" />
+				<label for="item-type-link" class="item-header">Enlace</label>
+				<div class="item-settings item-settings-link">
+					<label for="item-link-name">Nombre</label><input type="text" id="item-link-name" placeholder="Mi página web" /><br>
+					<label for="item-link-url">Dirección</label><input type="url" id="item-link-url" placeholder="www.example.org" /><br>
+					<!-- <label for="item-link-favicon">Icono (opcional)</label><input type="url" id="item-link-favicon" placeholder="example.org/favicon.ico" /><br> -->
 				</div>
-				<div class="item-settings-title">
+
+				<input id="item-type-title" type="radio" class="wp-select" name="item-type" value="title" />
+				<label for="item-type-title" class="item-header">Título</label>
+				<div class="item-settings item-settings-title">
 					<input type="text" id="item-title" placeholder="Título" />
 				</div>
+
 				<input type="submit" style="display:none">
+				<a class="button primary-button close-dialog">Guardar</a>
+				<input id="item-type-empty" type="radio" class="wp-select" name="item-type" value="empty" />
+				<label for="item-type-empty"><a class="button delete-button">Borrar ítem</a></label>
 			</form>
-			<a class="button close_dialog">Guardar</a>
-			<label for="item-type-empty"><a class="button">Borrar ítem</a></label>
 		</div>
 	</body>
 </html>
